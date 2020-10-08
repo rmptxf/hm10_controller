@@ -1,5 +1,5 @@
-### Ionic V5
-The project is based on ionic v5.2.
+### Ionic V5.2
+The project is based on ionic v5.2. I use this version, cause it was the latest version that supports the IonicDevapp.
 
 * To uinstall the current version, and install the 5.2 version
 ```bash
@@ -10,6 +10,11 @@ npm uninstall -g ionic && npm install -g ionic@5.2.0
 ionic serve --devapp
 ```
 > The **Ionic Devapp** was [**retired**](https://ionicframework.com/docs/appflow/devapp), and it is no longer available in the app/play stores, so I included the Android verion (apk) I still have in the **Ionic_Devapp** folder.
+
+>If you encouter this issue { Invalid options object. Copy Plugin has been initialized using an options object that does not match the API schema }, try to execute this command :
+```bash
+npm i @ionic/angular-toolkit@2.3.0 -E -D
+```
 
 ### HM10
 
