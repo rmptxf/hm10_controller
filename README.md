@@ -1,3 +1,7 @@
+### Clone or download
+```bash
+git clone https://github.com/rmptxf/hm10_controller.git && cd hm10_controller 
+```
 ### Ionic V5.2
 The project is based on ionic v5.2. I use this version, cause it was the latest version that supports the IonicDevapp.
 
