@@ -31,17 +31,17 @@ The notifications on the custom chaaracteristic should be enabled, to get notifi
 Sendig data from an arduino code requires using the **print()** function.
 
 ## App workflow
-After connecting to the hm10 based device, you'll need to enable the Notifications on the custom characteristic (*ffe1*).
+After connecting to the hm10 based device, you'll need to enable the **Notifications** on the custom characteristic.
 After that, you can have the arduino send the data using the **print()** function. The data would containe the actual variable, separated with a comma.
 
-*Example :* 
+**Example :** 
 
 The arduino will **print("124,254,245,361,212,")**. 
 
-The app will take the values in between the commas. So the Data[0] = 124, and the Data[1] = 254  and so on. for now, the app takes 4 variables.
+The app will take the values in between the commas. So the **Data[0] = 124**, and the **Data[1] = 254**  and so on. for now, the app takes **4 variables**.
 
 The printed data will also be displayed on the top.
 
-And you can also send data back to the Arduino, uisng the box down. use the enter key on the vertual keyboard to send your data. The max size id limited to 20bytes. And you can use **the read()** function in the side of the arduino, to read this data.
+And you can also send data back to the Arduino, using the box down. use the **enter key** on the vertual keyboard to send the data. The maximum data size is limited to 20 bytes. And you can use **the read()** function in the arduino side, to read this data.
 
 
