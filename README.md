@@ -11,11 +11,11 @@ ionic serve --devapp
 ```
 > The **Ionic Devapp** was [**retired**](https://ionicframework.com/docs/appflow/devapp), and it is no longer available in the app/play stores, so I included the Android verion (apk) I still have in the **Ionic_Devapp** folder.
 
->If you encouter this issue : 
+* If you encouter this issue : 
 
 { Invalid options object. Copy Plugin has been initialized using an options object that does not match the API schema }
 
-* Try to execute this command :
+> Try to execute this command :
 
 ```bash
 npm i @ionic/angular-toolkit@2.3.0 -E -D
