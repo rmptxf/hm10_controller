@@ -23,7 +23,7 @@ npm i @ionic/angular-toolkit@2.3.0 -E -D
 
 ### HM10
 
-The HM10 BLE module, has one custom service (uuid :*ffe0*), with one characteristic (uuid: *ffe1*). The characteristic is capable of handeling **20 bytes** at time. So, the maximum data you can transsmite or recieve at one time is 20 bytes.
+The HM10 BLE module, has one custom service (uuid :**ffe0**), with one characteristic (uuid: **ffe1**). The characteristic is capable of handeling **20 bytes** of data at one time. So, the maximum data you can transsmite or recieve at one time is 20 bytes.
 The notifications on the custom chaaracteristic should be enabled, to get notified of any data updates.
 
 ## Arduino
