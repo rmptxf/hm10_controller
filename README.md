@@ -1,3 +1,5 @@
+> Work in progress
+
 ### Clone or download
 ```bash
 git clone https://github.com/rmptxf/hm10_controller.git && cd hm10_controller 
