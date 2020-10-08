@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title class="center">{{ peripheral.name || 'Device' }}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button color="danger" class="bold" stronge="true" (click)="disconnect()">Disconnect</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="padding">
+
+    <ion-button (click)="startNotifications()" expand="full" color={{button_color}}>
+        {{notification_status}}
+    </ion-button>
+
+    <ion-item>
+        <ion-label Strong> Data : </ion-label>
+        <h2> {{ recievedData }}</h2>
+    </ion-item>
+
+    <ion-item>
+        <ion-label> Data[0] : </ion-label>
+        <h2>{{data0}} </h2>
+    </ion-item>
+
+    <ion-item>
+        <ion-label> Data[1] : </ion-label>
+        <h2>{{data1}} </h2>
+    </ion-item>
+
+    <ion-item>
+        <ion-label> Data[2] : </ion-label>
+        <h2>{{data2}} </h2>
+    </ion-item>
+
+    <ion-item>
+        <ion-label> Data[3] : </ion-label>
+        <h2>{{data3}} </h2>
+    </ion-item>
+
+    <ion-textarea align-text disabled readonly value="Data to be sent to the device (20 byte max) :">
+    </ion-textarea>
+
+    <ion-item>
+        <input class="input" position="floating" maxlength="20" [(ngModel)]="dataToSend" type="text" (keyup.enter)="sendData()" />
+    </ion-item>
+
+</ion-content>

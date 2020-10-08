@@ -1,0 +1,7 @@
+{
+  "name": "hm10_controller",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

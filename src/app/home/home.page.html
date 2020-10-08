@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title stronge="true"> Devices </ion-title>
+        <ion-buttons slot="end">
+            <ion-button color="primary" stronge="true" (click)="blecheck()"> Scan </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <ion-list>
+        <button class="device" ion-item *ngFor="let device of devices" (click)="deviceSelected(device)">
+            <h2>{{ device.name || 'Unnamed' }}</h2>
+            <p> 
+                <strong>MAC : </strong>{{ device.id }} | <strong> RSSI : </strong>{{ device.rssi }}
+            </p>
+        </button>
+    </ion-list>
+
+</ion-content>
