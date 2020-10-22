@@ -41,11 +41,13 @@ export class HomePage {
   {
       this.onscaning();       
       this.devices = [];  // clear existing list
+      
       this.ble.scan([CUSTOM_SERVICE],3).subscribe(
                 device => { this.onDiscoveredDevice(device);},
                 error =>  { this.showAlert("Error","Error scanning for hm10 based devices. Make sure the Location service is enabled!");}              
-        );                                 
-  }                    
+        );
+  
+      }                    
        
   blecheck(){                
     this.ble.enable().then(
@@ -62,12 +64,25 @@ export class HomePage {
  }   
 
   onDiscoveredDevice(device) {
-      console.log('Discovered ' + JSON.stringify(device, null, 2));
-      this.ngZone.run(() => {
-              this.devices.push(device);
-            });
-      }
-                             
+
+   let advData = new Uint8Array(device.advertising);
+
+   //console.log('advertising data: '+ advData);
+   
+   for(var i =0; i< advData.length; i++)
+   {
+    var s = '';
+    if(advData[i].toString(16).length<2) s = '0';
+    console.log('advertising data ['+i+']: ' + s + advData[i].toString(16).toUpperCase());
+   }
+   
+    //console.log("device.id : " + device.id);
+
+    this.ngZone.run(() => {
+            this.devices.push(device);
+          });
+    }
+                            
   deviceSelected(device) { 
         
       console.log(JSON.stringify(device) + ' selected'); 
