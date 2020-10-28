@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { NavController, AlertController,ToastController, LoadingController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
 import { BLE } from '@ionic-native/ble/ngx';
+import { Platform } from '@ionic/angular'; 
 
 const CUSTOM_SERVICE = "ffe0" ;  
 
@@ -13,8 +14,11 @@ const CUSTOM_SERVICE = "ffe0" ;
 export class HomePage {
 
   devices: any[] = [];
-  
+  devicePlatform: string = '';
+  deviceMac:string='';
+  flagByte:string='';
   constructor(private ble: BLE,
+              public platform: Platform,
               public navCtrl: NavController,           
               private toastCtrl: ToastController,
               private alertCtrl: AlertController,
@@ -23,9 +27,26 @@ export class HomePage {
              }
 
 
+  // Checking which platform (ios/android) the device uses
+  platformCheck()
+  {   
+    if (this.platform.is('ios')) 
+    {
+      this.devicePlatform = 'ios'; 
+      console.log('I am an iOS device!');         
+    }
+    else if(this.platform.is('android'))
+    {
+      this.devicePlatform = 'android'; 
+      console.log('I am an Android device!');       
+    }
+   // console.log(this.platform.platforms());
+  }
+
   ionViewWillEnter()
   {
       console.log('ionViewWillEnter'); 
+      this.platformCheck();
       this.blecheck()            
   };
               
@@ -63,26 +84,62 @@ export class HomePage {
             
  }   
 
-  onDiscoveredDevice(device) {
+  onDiscoveredDevice(device) 
+  {
+    var advData;
+    var deviceMac = '';
+    var flagByte ='';
+    var s ='';
+    var p =':';  
 
-   let advData = new Uint8Array(device.advertising);
-
-   //console.log('advertising data: '+ advData);
-   
-   for(var i =0; i< advData.length; i++)
-   {
-    var s = '';
-    if(advData[i].toString(16).length<2) s = '0';
-    console.log('advertising data ['+i+']: ' + s + advData[i].toString(16).toUpperCase());
-   }
-   
-    //console.log("device.id : " + device.id);
-
-    this.ngZone.run(() => {
-            this.devices.push(device);
-          });
+    if(this.devicePlatform == 'android')
+    {
+      advData = new Uint8Array(device.advertising);
     }
-                            
+    else if(this.devicePlatform == 'ios')
+    {
+      advData = new Uint8Array(device.advertisting.kCBAdvDataManufacturerData);
+    }
+
+    for(var i=0; i<advData.length; i++)
+    { 
+      //48, 4D, XX, XX, XX, XX, XX, XX
+      if( advData[i].toString(16).toUpperCase()   == '48' 
+        && advData[i+1].toString(16).toUpperCase() == '4D')
+      {
+        for(var j=i+2; j< i+2+6; j++)
+        {
+          if(advData[j].toString(16).length<2) s = '0';
+          else s = ''
+          if(j == i+2+6-1) p ='';
+          deviceMac += s + advData[j].toString(16).toUpperCase()+ p;
+        }
+      }
+      // 16, 00, B0, [FLAG]
+      else if( advData[i].toString(16).toUpperCase()   == '16' 
+            && advData[i+1].toString(16).toUpperCase() == '00'
+            && advData[i+2].toString(16).toUpperCase() == 'B0')
+      {
+        flagByte = advData[i+3].toString(16).toUpperCase();
+      }
+
+    }
+  
+    console.log('device  id : '+ device.id);
+    console.log('device MAC : '+ deviceMac); 
+    console.log('device  id should be the same as the device MAC address on android.'); 
+    console.log('Flag : '+ flagByte);
+  
+
+    this.ngZone.run(
+      () => {
+            this.devices.push(device);
+            this.deviceMac = deviceMac;
+            this.flagByte = flagByte;
+          });
+  }
+        
+    
   deviceSelected(device) { 
         
       console.log(JSON.stringify(device) + ' selected'); 

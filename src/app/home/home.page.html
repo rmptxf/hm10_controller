@@ -11,13 +11,26 @@
 
     <ion-list>
         <button class="device" ion-item *ngFor="let device of devices" (click)="deviceSelected(device)">
-            <h2>{{ device.name || 'Unnamed' }}</h2>
-            <p> 
-                <strong>MAC : </strong>{{ device.id }} | <strong> RSSI : </strong>{{ device.rssi }}
-            </p>
-            <p>
-                <strong>Advertising : </strong> {{ device.advertising }} 
-            </p>
+            <div>
+                <h3>{{ device.name || 'Unnamed' }}</h3>
+            </div>
+                     
+            <div>
+                <span> <strong>MAC : </strong>{{ deviceMac }} </span>
+            </div>
+
+            <div>
+                <span> <strong>Id : </strong>{{ device.id }} </span>
+            </div>
+
+            <div>
+                <span><strong>FlagByte : </strong> {{ flagByte }}</span> 
+            </div>
+
+            <div>
+                <span><strong> RSSI : </strong>{{ device.rssi }}</span>
+            </div>
+
         </button>
     </ion-list>
 
