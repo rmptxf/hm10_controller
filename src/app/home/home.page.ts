@@ -4,8 +4,6 @@ import { BLE } from '@ionic-native/ble/ngx';
 import { Platform } from '@ionic/angular'; 
 
 const CUSTOM_SERVICE = "ffe0" ;  
-
-//var scannedDevice = { name: '', id:'', rssi:'',  av : 0 };
   
 @Component({
   selector: 'app-home',
@@ -25,12 +23,11 @@ export class HomePage {
               private loadingController: LoadingController,
               private ngZone: NgZone) {
              }
-
          
   scan() 
   {
     this.onscaning();        
-    this.devices = [];  // clear existing list
+    this.devices = [];
     
     this.ble.scan([CUSTOM_SERVICE], 3).subscribe(
               device => { this.onDiscoveredDevice(device);},
@@ -83,15 +80,14 @@ export class HomePage {
 
     var scannedDevice = { name: device.name, id: device.id, mac: deviceMac, flag: deviceFlagByte, batt: deviceBattByte }; 
 
-    console.log('Scanned device  : '+ JSON.stringify(scannedDevice));
-    console.log('Scanned device advData: '+ advDataString+'.');
+    console.log('Scanned device : '+JSON.stringify(scannedDevice));
+    console.log('Scanned device advData : '+advDataString+'.');
 
     this.ngZone.run(() => 
     {
       this.devices.push(scannedDevice);
     })
-    
-  }    
+  }  
     
   async showAlert(title, message) 
   {               
