@@ -2,36 +2,35 @@
     <ion-toolbar>
         <ion-title stronge="true"> Devices </ion-title>
         <ion-buttons slot="end">
-            <ion-button color="primary" stronge="true" (click)="blecheck()"> Scan </ion-button>
+            <ion-button color="primary" stronge="true" (click)="scan()"> Scan </ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-
+    <!--
     <ion-list>
-        <button class="device" ion-item *ngFor="let device of devices" (click)="deviceSelected(device)">
-            <div>
-                <h3>{{ device.name || 'Unnamed' }}</h3>
-            </div>
-                     
-            <div>
-                <span> <strong>MAC : </strong>{{ deviceMac }} </span>
-            </div>
+        <ion-item color="dark" ion-item *ngFor="let device of devices">
+            <ion-grid>
+                <ion-row>
+                    <ion-label> Name : {{ device.name || 'Unnamed' }} </ion-label>
+                </ion-row>
+                <ion-row>
+                    <ion-label> UUID : {{ device.id }} </ion-label>
+                </ion-row>
+                <ion-row>
+                    <ion-label> MAC : {{ device.mac }} </ion-label>
+                </ion-row>
+                <ion-row>
+                    <ion-label> Flag : {{ device.flag }} </ion-label>
+                </ion-row>
+                <ion-row>
+                    <ion-label> Batt : {{ device.batt }} </ion-label>
+                </ion-row>
 
-            <div>
-                <span> <strong>Id : </strong>{{ device.id }} </span>
-            </div>
-
-            <div>
-                <span><strong>FlagByte : </strong> {{ flagByte }}</span> 
-            </div>
-
-            <div>
-                <span><strong> RSSI : </strong>{{ device.rssi }}</span>
-            </div>
-
-        </button>
+            </ion-grid>
+            <hr>
+        </ion-item>
     </ion-list>
-
+-->
 </ion-content>
